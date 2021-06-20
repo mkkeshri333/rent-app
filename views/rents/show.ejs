@@ -1,0 +1,120 @@
+<% layout('layouts/boilerplate') %>
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+
+    <div class="row">
+        <div class="col-6">
+
+            <div id="rentControls" class="carousel slide" data-bs-ride="carousel">
+                 <div class="carousel-inner">
+                  <%   rent.images.forEach((img,i)=>{%>
+                     <div class="carousel-item  <%= i===0?'active':'' %>">
+                        <img src="<%= img.url %>" class=" img-fluid card-img-top" style="height: 20rem;" alt="...">
+                    </div>
+                    <%})%>
+                </div>
+                <% if(rent.images.length>1){%>
+                <button class="carousel-control-prev" type="button" data-bs-target="#rentControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#rentControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <%}%>
+            </div>
+
+            <div class="card mb-5 ">
+                <h1>
+                    <%= rent.title %>
+                </h1>
+                        <div class="card-body">
+                            <small class=" text-muted card-text">
+                                <%= rent.location %>
+                            </small>
+                            <h5> $ <%= rent.price %>
+                            </h5>
+                            <p class="card-text">
+                                <%= rent.description %>
+                            </p>
+                            <small class=" text-muted card-text">
+                               Submited By: <%= rent.author.username %>
+                            </small>
+
+                            <h5>  <%= rent.contact %>
+                            </h5>
+
+                        </div>
+
+                        <hr>
+                           <% if(currentUser && rent.author.equals(currentUser._id)) {%>
+                            <div class=" d-flex card-body">
+                                <a class="btn-info card-link btn btn-success mb-3 mx-3" href="/rent/<%= rent._id%>/edit">EDIT </a>
+                                <form action="/rent/<%=rent._id%>?_method=DELETE" method="POST" novalidate
+                                    class="validated-form">
+                                    <button class="btn btn-danger"> DELETE </button>
+                                </form>
+                            </div>
+                            <%}%>
+            </div>
+
+              
+        </div>
+
+
+        <div class="col-6">
+            <% if(currentUser){%>
+                <h2>Leave a review </h2>
+                <form action="/rent/<%=rent._id%>/reviews" method="POST" novalidate class="validated-form">
+                    <fieldset class="starability-basic">
+                        <legend>First rating:</legend>
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required>
+                    </textarea>
+                    </div>
+                    <button class="btn btn-success mb-3"> Submit </button>
+                </form>
+                <%}%>
+                    <% for(let review of rent.reviews) { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+
+
+                                <h5 class="card-title mb-2 ">
+                                    <%= review.author.username%>
+                                </h5>
+                                <p class="starability-result" data-rating='<%=review.rating %>'>
+                                    Rated: <%=review.rating %> stars
+                                </p>
+                                <p class="card-text">Review : <%=review.body%>
+                                </p>
+                                <% if(currentUser && review.author.equals(currentUser._id)) {%>
+                                    <form
+                                        action="/rent/<%=rent._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                        method="POST">
+                                        <button class="dtn btn-sm btn-danger mb-3"> DELETE </button>
+                                    </form>
+                                    <%}%>
+                            </div>
+                        </div>
+
+                        <% } %>
+        </div>
+
+    </div>

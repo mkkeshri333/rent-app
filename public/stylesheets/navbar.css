@@ -1,0 +1,39 @@
+.nav-color{
+
+    background-color: #4400ff;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.bg-c{
+    background-color: #ffff;
+}
+
+.heading-main{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    padding: 10px;
+    background-color: aqua; 
+    margin-top: 10px;
+}
+
+.footer-bar{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 25px;
+    color: #ffff;
+
+}
+
+.formlogin-register{
+
+    width:50%;
+    padding: 20px;
+    margin: auto;
+    min-height: 450px;
+    align-items: center;
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url("https://res.cloudinary.com/dqwnjt6rq/image/upload/v1624050348/RentHome/sjuxar8sxvcluneviccc.jpg");
+    background-size:cover;
+    background-position: center;
+    border-radius: 2%;
+    color: #ffff;
+}

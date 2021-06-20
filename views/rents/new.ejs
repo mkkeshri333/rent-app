@@ -1,0 +1,72 @@
+<% layout('layouts/boilerplate') %>
+<div class="mb-2 formlogin-register">
+    <div class="row">
+        <h1 class="text-center"> New House To Rent</h1>
+        <div>
+
+            <form action="/rent" method="POST" novalidate class="validated-form"  enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="rent[title]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="rent[location]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="contact">Contact</label>
+                    <input class="form-control" type="text" id="contact" name="rent[contact]"required>
+                    <div class="valid-feedback">
+                        looks good!
+                    </div>   
+                </div>
+
+                <input type="file" name="image" id="image" multiple>
+                
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="image">Image Url</label>
+                    <input class="form-control" type="text" id="image" name="campground[image]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div> -->
+
+                <div class="mb-3">
+                    <label class="form-label" for="price">Rent Price </label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price-label"
+                            name="rent[price]" required>
+                    </div>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="rent[description]" required>
+                    </textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+
+                <button class="btn btn-success mb-3"> ADD RENT </button>
+                <p>
+                    <a class="btn btn-primary" href="/rent"> ALL RENT </a>
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+
+    </div>

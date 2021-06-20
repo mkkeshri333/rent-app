@@ -1,0 +1,45 @@
+body{
+    height:100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url("https://res.cloudinary.com/dqwnjt6rq/image/upload/v1624050348/RentHome/sjuxar8sxvcluneviccc.jpg");
+    background-size:cover;
+    background-position: center;
+}
+.nav-color{
+    background-color: rgb(98, 0, 255);
+    color: #ffff;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.cover-container{
+   
+   background-image:linear-gradient(rgba(7, 8, 8, 0.5),rgba(6, 7, 7, 0.4));
+   border-radius: 1%;
+   margin: auto;
+   margin-top: 100px;
+   margin-bottom: 50px; 
+   padding-bottom: 30px;
+   width :88vw;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   z-index: 5;
+}
+
+.main-container{
+    margin: auto;
+    width:96vw;
+    color: #ffff;
+    text-align: center;
+    padding-bottom: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.btn-secondary{
+    background-color: blue;
+    width: 220px;
+    margin: auto;
+}
+
+.btn-secondary:hover{
+    background-color: #00b7ff;
+}
