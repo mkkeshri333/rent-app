@@ -9,7 +9,6 @@ const mongoose= require('mongoose');
 const ejsMate =require('ejs-mate');
 const session=require('express-session');
 const flash=require('connect-flash');
-const Joi = require('joi');
 const ExpressError = require('./utils/ExpressError');
 
 const methodOverride=require('method-override');
@@ -26,21 +25,12 @@ const userRoutes=require('./routes/user');
 const rentRoutes=require('./routes/rent');
 const reviewsRoutes = require('./routes/reviews');
 
-const secret=process.env.SECRET || 'thisshouldbebettersecret!';
-
-const MongoStore = require("connect-mongo");
-
-
-const dbUrl=process.env.DB_URL || 'mongodb://localhost:27017/Rent-home';
-
-
-
+const dbUrl=process.env.DB_URL || 'mongodb://localhost:27017/Rent-home-pay';
 mongoose.connect(dbUrl,{
 useNewUrlParser:true,
 useCreateIndex:true,
 useUnifiedTopology:true,
 useFindAndModify:false
-
 });
 
 const db=mongoose.connection;
@@ -49,12 +39,7 @@ db.once("open",()=>{
     console.log("Database connected");
 })
 
-
-
-
 const app=express();
-
-
 app.engine('ejs', ejsMate);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
@@ -64,18 +49,9 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')));
 app.use(mongoSanitize());
 
-const store= MongoStore.create ({
-        mongoUrl:dbUrl,
-        secret,
-        touchAfter:20*60*60
-});
-
-store.on("error",function(e){
-    console.log("SESSION STORE Error",e);
-});
+const secret=process.env.SECRET || 'thisshouldbebettersecret!';
 
 const sessionConfig={
-    store,
     name:'home',
     secret,
     resave:false,
@@ -107,28 +83,17 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.get('/fakeUser',async(req,res)=>{
-    const user=new User({email:'coltttt@gmail.com',username:'colttt'});
-    const newUser=await User.register(user,'chicken');
-    res.send(newUser);
-})
-
 app.use('/',userRoutes);
 app.use('/rent',rentRoutes);
 app.use('/rent/:id/reviews',reviewsRoutes);
 
 app.get('/',(req,res)=>{
-    //console.log( 1000 * 60 * 60 * 24 * 7);
-    //console.log(session.cookies);
-
     res.render('home');
 })
 
 
 app.all('*',(req,res,next)=>{
-
-    next(new ExpressError('page not found',404));
-
+     next(new ExpressError('page not found',404));
 })
 
 app.use((err,req,res,next)=>{
