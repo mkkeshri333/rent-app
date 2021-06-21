@@ -24,11 +24,12 @@
 }
 
 .formlogin-register{
-
-    width:50%;
+    
+    width: 50%;
+    min-width: 250px;
     padding: 20px;
     margin: auto;
-    min-height: 450px;
+    min-height: 350px;
     align-items: center;
     background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
     url("https://res.cloudinary.com/dqwnjt6rq/image/upload/v1624050348/RentHome/sjuxar8sxvcluneviccc.jpg");
