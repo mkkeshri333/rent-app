@@ -1,6 +1,6 @@
-const BaseJoi = require('joi');
+const Joi = require('joi');
 
-
+/*
 const extension=(joi)=>({
     type:'string',
     base:joi.string(),
@@ -23,15 +23,18 @@ const extension=(joi)=>({
     }
 });
 
+
 const Joi=BaseJoi.extend(extension);
+*/
 
 module.exports.rentSchema = Joi.object({
     rent: Joi.object({
-        title: Joi.string().required().escapeHTML(),
+        title: Joi.string().required(),
         price: Joi.number().required().min(0),
+        contact:Joi.number().required(),
        // image: Joi.string().required(),
-        location: Joi.string().required().escapeHTML(),
-        description: Joi.string().required().escapeHTML()
+        location: Joi.string().required(),
+        description: Joi.string().required()
 
     }).required()
 });
@@ -39,6 +42,6 @@ module.exports.rentSchema = Joi.object({
 module.exports.reviewSchema= Joi.object({
     review: Joi.object({
         rating:Joi.number().required(),
-        body:Joi.string().required().escapeHTML()
+        body:Joi.string().required()
     }).required()
 })

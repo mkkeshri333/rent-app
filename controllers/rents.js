@@ -19,7 +19,6 @@ module.exports.createRent=async (req, res, next) => {
     rent.images = req.files.map(f=>({url:f.path,filename:f.filename }));
     rent.author = req.user._id;
     await rent.save();
-    console.log(rent);
     req.flash('success', 'Successfully created a New rent');
 
     res.redirect(`/rent/${rent._id}`);
